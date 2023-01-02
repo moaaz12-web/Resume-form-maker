@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-
+import { useSelector } from "react-redux";
 const MainContent = () => {
 // eslint-disable-next-line
   const [isOpen, setIsOpen] = useState(false);
+
+  const generated = useSelector(state => state.generated);
 
   const toggleDropdown = (e) => {
     setIsOpen((prevState) => !prevState);
@@ -44,7 +46,7 @@ const MainContent = () => {
           <p className="block font-bold text-gray-700 mb-2" htmlFor="dropdown1">Generated text</p>
           <textarea
             className="border rounded-lg shadow-lg p-2  hover:border-blue-500 hover:shadow-xl w-full h-64 md:w-80 md:h-80 lg:w-96 lg:h-96"
-            placeholder="We are waiting foryou to generate some amazing content ✨✨✨"
+            placeholder="We are waiting foryou to generate some amazing content ✨✨✨" value={generated}
           ></textarea>
         </div>
         <div className="flex flex-col justify-center items-center lg:block">

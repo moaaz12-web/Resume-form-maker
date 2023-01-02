@@ -1,6 +1,6 @@
-const counterReducer = (state="", action)=>{
+const generatedReducer = (state="", action)=>{
     switch(action.type){
-        case 'INPUT_VAL':
+        case 'GENERATE_SUCCESS':
             return state = action.payload;
         
         default:
@@ -8,4 +8,4 @@ const counterReducer = (state="", action)=>{
     };
 }
 
-export default counterReducer;
+export default generatedReducer;

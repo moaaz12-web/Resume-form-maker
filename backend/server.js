@@ -5,7 +5,7 @@ const { Configuration, OpenAIApi } = require("openai");
 
 const app = express()
 const configuration = new Configuration({
-  apiKey: "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",
+  apiKey: "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",
 });
 
 app.use(cors());
@@ -20,9 +20,7 @@ app.post('/api/generate', (req, response) => {
   // const generatedText = generateText(language, Tone, Usecase, Description, Variants);
 
   let input = `Write a ${Usecase} for me in ${language} language. Make the tone ${Tone}. The description or keywords are these: ${Description}. Make ${Variants} versions of these.`
-  console.log(input)
-
-
+  // console.log(input)
 
   const openai = new OpenAIApi(configuration);
 
@@ -35,10 +33,9 @@ const output = openai.createCompletion({
   frequency_penalty: 0,
   presence_penalty: 0,
 }).then((res)=>{
-  console.log(res.data.choices[0].text)
+  // console.log(res.data.choices[0].text)
   response.send({ generated: res.data.choices[0].text });
 })
-    
 });
 
 

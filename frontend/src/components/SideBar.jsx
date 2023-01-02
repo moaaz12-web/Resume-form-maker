@@ -131,32 +131,57 @@ const Sidebar = () => {
 
   };
   // eslint-disable-next-line
-  const handleSubmit = (event) => {
+  const handleSubmit = (event, formType) => {
     // prevent the default submission behavior of the form
     event.preventDefault();
-
-    Axios.post("http://localhost:5000/api/generate", { language: language, Tone: Tone, Usecase: Usecase, Description: Description, Variants: Variants })
-      .then((res) => {
-        dispatch(setGenerated(res.data.generated));
-      }).catch((err) => {
-        setGenerated(err);
-        dispatch(setGenerated(err));
+    if(formType =="form1"){
+      Axios.post("http://localhost:5000/api/generate", {
+        language: language,
+        Tone: Tone,
+        Usecase: Usecase,
+        Description: Description,
+        Variants: Variants
       })
+        .then(res => {
+          if (res.data.generated) {
+            // dispatch a plain object action using the dispatch function
+            dispatch({ type: "GENERATE_SUCCESS", payload: res.data.generated });
+          } else {
+            console.error("The response does not contain the expected data");
+          }
+        })
+        .catch(err => {
+          console.error(err);
+          // dispatch an error action using the dispatch function
+          dispatch({ type: "ERROR", payload: err });
+        });
 
+    }else if(formType=="form2"){
+      Axios.post("http://localhost:5000/api/generate", {
+        language: language,
+        Tone: Tone,
+        Usecase: Usecase,
+        Description: Description + " You need to rewrite this description.\n",
+        Variants: Variants
+      })
+        .then(res => {
+          if (res.data.generated) {
+            // dispatch a plain object action using the dispatch function
+            dispatch({ type: "GENERATE_SUCCESS", payload: res.data.generated });
+          } else {
+            console.error("The response does not contain the expected data");
+          }
+        })
+        .catch(err => {
+          console.error(err);
+          // dispatch an error action using the dispatch function
+          dispatch({ type: "ERROR", payload: err });
+        });
 
-
-
-      
-      
-      // console.log(Usecase, Tone, language, Description)
-      // reset the form
-      // event.target.reset();
     }
+  
 
-    // useEffect(() => {
-    //   dispatch(generated);
-    // }, [generated]);
-    // console.log(res.data.generated)
+  };
 
   console.log(generated)
 
@@ -182,7 +207,7 @@ const Sidebar = () => {
 
         </div> */}
         {selectedOption === "Generate New Copy" ? (
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={event => handleSubmit(event, "form1")}>
             <div className="mb-4 flex flex-row justify-between items-center gap-10">
               <div>
                 <label className="block font-bold text-gray-700 mb-2" htmlFor="dropdown1">Languague</label>
@@ -246,7 +271,7 @@ const Sidebar = () => {
             </div>
           </form>
 
-        ) : <form onSubmit={handleSubmit}>
+        ) : <form onSubmit={event => handleSubmit(event, "form2")}>
           <div className="mb-4 flex flex-row justify-between items-center gap-10">
             <div>
               <label className="block font-bold text-gray-700 mb-2" htmlFor="dropdown1">Languague</label>
