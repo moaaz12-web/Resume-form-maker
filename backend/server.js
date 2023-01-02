@@ -5,7 +5,7 @@ const { Configuration, OpenAIApi } = require("openai");
 
 const app = express()
 const configuration = new Configuration({
-  apiKey: "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",
+  apiKey: "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",
 });
 
 app.use(cors());
@@ -35,6 +35,30 @@ const output = openai.createCompletion({
 }).then((res)=>{
   // console.log(res.data.choices[0].text)
   response.send({ generated: res.data.choices[0].text });
+})
+});
+
+
+app.post('/api/translate', (req, response) => {
+  const { language, text } = req.body;
+  // do something with the data, such as calling a function to generate text
+  // const generatedText = generateText(language, Tone, Usecase, Description, Variants);
+
+let input = `Translate the following text into ${language} language. \n ${text}`  // console.log(input)
+
+const openai = new OpenAIApi(configuration);
+
+const output = openai.createCompletion({
+  model: "text-davinci-003",
+  prompt: input,
+  temperature: 0.7,
+  max_tokens: 256,
+  top_p: 1,
+  frequency_penalty: 0,
+  presence_penalty: 0,
+}).then((res)=>{
+  // console.log(res.data.choices[0].text)
+  response.send({ translated: res.data.choices[0].text });
 })
 });
 

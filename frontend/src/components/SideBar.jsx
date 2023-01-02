@@ -125,7 +125,7 @@ const Sidebar = () => {
   };
   // eslint-disable-next-line
   const [isOpen, setIsOpen] = useState(false);
-
+  // const dispatch = useDispatch('')
   const toggleDropdown = (e) => {
     setIsOpen((prevState) => !prevState);
 
@@ -161,7 +161,7 @@ const Sidebar = () => {
         language: language,
         Tone: Tone,
         Usecase: Usecase,
-        Description: Description + " You need to rewrite this description.\n",
+        Description: Description + " You need to REWRITE this description.\n",
         Variants: Variants
       })
         .then(res => {
@@ -177,13 +177,10 @@ const Sidebar = () => {
           // dispatch an error action using the dispatch function
           dispatch({ type: "ERROR", payload: err });
         });
-
     }
-  
-
   };
 
-  console.log(generated)
+  // console.log(generated)
 
   return (
     <>
