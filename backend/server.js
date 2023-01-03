@@ -1,70 +1,96 @@
-const express = require("express")
-const cors = require('cors');
+const express = require("express");
+const cors = require("cors");
+const db = require("./config/db");
+const cookieParser = require("cookie-parser");
 const { Configuration, OpenAIApi } = require("openai");
 
+//load env variables
+require("dotenv").config();
 
-const app = express()
+const app = express();
+const PORT = process.env.PORT || 3000;
+
 const configuration = new Configuration({
-  apiKey: "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",
+    apiKey: "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",
 });
 
-app.use(cors());
-app.use(express.json())
+// express app config
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(__dirname + "/../client/public"));
+app.use(cookieParser());
 
-// Routes
-// app.use("/api", require("./routes/generation.js"))
+app.use(
+    cors({
+        origin: ["http://localhost:3000"],
+        methods: "GET,POST,PUT,DELETE,OPTIONS",
+    })
+);
 
-app.post('/api/generate', (req, response) => {
-  const { language, Tone, Usecase, Description, Variants } = req.body;
-  // do something with the data, such as calling a function to generate text
-  // const generatedText = generateText(language, Tone, Usecase, Description, Variants);
+//Require application Route modules
+const userRoutes = require("./routes/users");
 
-  let input = `Write a ${Usecase} for me in ${language} language. Make the tone ${Tone}. The description or keywords are these: ${Description}. Make ${Variants} versions of these.`
-  // console.log(input)
+app.use("/user", userRoutes);
 
-  const openai = new OpenAIApi(configuration);
+app.post("/api/generate", (req, response) => {
+    const { language, Tone, Usecase, Description, Variants } = req.body;
+    // do something with the data, such as calling a function to generate text
+    // const generatedText = generateText(language, Tone, Usecase, Description, Variants);
 
-const output = openai.createCompletion({
-  model: "text-davinci-003",
-  prompt: input,
-  temperature: 0.7,
-  max_tokens: 256,
-  top_p: 1,
-  frequency_penalty: 0,
-  presence_penalty: 0,
-}).then((res)=>{
-  // console.log(res.data.choices[0].text)
-  response.send({ generated: res.data.choices[0].text });
-})
+    let input = `Write a ${Usecase} for me in ${language} language. Make the tone ${Tone}. The description or keywords are these: ${Description}. Make ${Variants} versions of these.`;
+    // console.log(input)
+
+    const openai = new OpenAIApi(configuration);
+
+    const output = openai
+        .createCompletion({
+            model: "text-davinci-003",
+            prompt: input,
+            temperature: 0.7,
+            max_tokens: 256,
+            top_p: 1,
+            frequency_penalty: 0,
+            presence_penalty: 0,
+        })
+        .then((res) => {
+            // console.log(res.data.choices[0].text)
+            response.send({ generated: res.data.choices[0].text });
+        });
 });
 
+app.post("/api/translate", (req, response) => {
+    const { language, text } = req.body;
+    // do something with the data, such as calling a function to generate text
+    // const generatedText = generateText(language, Tone, Usecase, Description, Variants);
 
-app.post('/api/translate', (req, response) => {
-  const { language, text } = req.body;
-  // do something with the data, such as calling a function to generate text
-  // const generatedText = generateText(language, Tone, Usecase, Description, Variants);
+    let input = `Translate the following text into ${language} language. \n ${text}`; // console.log(input)
 
-let input = `Translate the following text into ${language} language. \n ${text}`  // console.log(input)
+    const openai = new OpenAIApi(configuration);
 
-const openai = new OpenAIApi(configuration);
-
-const output = openai.createCompletion({
-  model: "text-davinci-003",
-  prompt: input,
-  temperature: 0.7,
-  max_tokens: 256,
-  top_p: 1,
-  frequency_penalty: 0,
-  presence_penalty: 0,
-}).then((res)=>{
-  // console.log(res.data.choices[0].text)
-  response.send({ translated: res.data.choices[0].text });
-})
+    const output = openai
+        .createCompletion({
+            model: "text-davinci-003",
+            prompt: input,
+            temperature: 0.7,
+            max_tokens: 256,
+            top_p: 1,
+            frequency_penalty: 0,
+            presence_penalty: 0,
+        })
+        .then((res) => {
+            // console.log(res.data.choices[0].text)
+            response.send({ translated: res.data.choices[0].text });
+        });
 });
 
+app.listen(PORT, function() {
+    console.log(`Server Runs Perfectly at http://localhost:${PORT}`);
+});
 
-
-let port = 5000
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-  })
+// "/user/google-login": {
+//     "target": "http://localhost:5000/"
+// },
+// "/user/facebook-login": {
+//     "target": "http://localhost:5000/"
+// },
