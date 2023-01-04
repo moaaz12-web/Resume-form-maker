@@ -3,6 +3,7 @@ const cors = require("cors");
 const db = require("./config/db");
 const cookieParser = require("cookie-parser");
 const { Configuration, OpenAIApi } = require("openai");
+const stripe = require("stripe")(process.env.STRIPE_SECRET)
 
 //load env variables
 require("dotenv").config();
@@ -83,6 +84,31 @@ app.post("/api/translate", (req, response) => {
             response.send({ translated: res.data.choices[0].text });
         });
 });
+
+app.post("/payment", cors(), async (req, res) => {
+	let { amount, id } = req.body
+	try {
+		const payment = await stripe.paymentIntents.create({
+			amount,
+			currency: "USD",
+			description: "Word Weaver Payment",
+			payment_method: id,
+			confirm: true
+		})
+		console.log("Payment", payment)
+		res.json({
+			message: "Payment successful",
+			success: true
+		})
+	} catch (error) {
+		console.log("Error", error)
+		res.json({
+			message: "Payment failed",
+			success: false
+		})
+	}
+})
+
 
 app.listen(PORT, function() {
     console.log(`Server Runs Perfectly at http://localhost:${PORT}`);
