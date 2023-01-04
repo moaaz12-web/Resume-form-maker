@@ -54,11 +54,34 @@ module.exports = {
 
   getAllUserDocument: async (req, res) => {
     try {
-      const findAll = await Document.find({ usecase: "kattar" });
-      // res.json(findAll);
-      res.status(200).json({
-        findAll,
+      const findAll = await Document.find({ user: req.params.id });
+      if (!findAll) {
+        res.json({ message: "You dont have any document" });
+      } else {
+        // res.json(findAll);
+        res.status(200).json({
+          findAll,
+        });
+      }
+    } catch (error) {
+      res.json(error);
+    }
+  },
+  // 63b3ed5cf183c1955e4e41d6
+  getAllUserFavDocument: async (req, res) => {
+    try {
+      const findAll = await Document.find({
+        user: req.params.id,
+        isFavourite: true,
       });
+      if (!findAll) {
+        res.json({ message: "You dont have any fav document" });
+      } else {
+        // res.json(findAll);
+        res.status(200).json({
+          findAll,
+        });
+      }
     } catch (error) {
       res.json(error);
     }
