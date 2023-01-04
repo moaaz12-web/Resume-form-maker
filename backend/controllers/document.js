@@ -35,28 +35,32 @@ module.exports = {
     } catch (error) {
       console.log(error.message);
     }
-    // try {
-    //   if (!isValid) {
-    //     res.status(404).json(errors);
-    //   } else {
-    //     await User.findOne({ email }).then(async (exist) => {
-    //       if (exist) {
-    //         errors.email = "Email already in use";
-    //         return res.status(404).json(errors);
-    //       } else {
-    //         const hashedpassword = await bcrypt.hash(password, 8);
-    //         await User.create({
-    //           name,
-    //           email,
-    //           password: hashedpassword,
-    //         });
-    //         res.status(201).json({ message: "user added with success" });
-    //       }
-    //     });
-    //   }
-    // } catch (error) {
-    //   console.log(error.message);
-    // }
   },
-  //   ---------------------------------------------
+
+  // const updatedDocument = await Document.findById(req.body.id);
+  // updatedDocument.isFavourite = true;
+  // await updatedDocument.save();
+  // res.status(200).json({ message: "document updated successfully" });
+  favouriteDocument: async (req, res) => {
+    try {
+      const updatedDocument = await Document.findById(req.params.id);
+      updatedDocument.isFavourite = true;
+      await updatedDocument.save();
+      res.status(200).json({ message: "document updated successfully" });
+    } catch (error) {
+      res.json(error);
+    }
+  },
+
+  getAllUserDocument: async (req, res) => {
+    try {
+      const findAll = await Document.find({ usecase: "kattar" });
+      // res.json(findAll);
+      res.status(200).json({
+        findAll,
+      });
+    } catch (error) {
+      res.json(error);
+    }
+  },
 };
