@@ -36,14 +36,11 @@ function Signup() {
       });
   };
 
-return(
+  return (
     <div className="container">
-          {/* <div className="App">{isLoading ? <LoadingSpinner /> : ""}</div> */}
+      {/* <div className="App">{isLoading ? <LoadingSpinner /> : ""}</div> */}
 
-      <div className="col-lg-4 col-md-6 col-sm-8 mx-auto">
-        <h1>
-          Inscription <i className="fa-solid fa-user"></i>
-        </h1>
+      <div className="col-lg-4 col-md-6 mt-20 col-sm-8 mx-auto">
         <div
           className="p-6 shadow-lg p-3 mb-5 bg-body rounded"
           style={{ backgroundColor: "white" }}
@@ -88,7 +85,6 @@ return(
       </div>
     </div>
   );
- 
 }
 
 export default Signup;

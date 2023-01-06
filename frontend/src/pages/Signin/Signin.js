@@ -58,11 +58,8 @@ function Signin() {
   return (
     <div className="container" onSubmit={onSubmitHandler}>
       <div class="col-lg-4 col-md-6 col-sm-8 mx-auto">
-        <h1>
-          Connexion <i class="fa fa-sign-in" aria-hidden="true"></i>
-        </h1>
         <div
-          className="p-6 shadow-lg p-3 mb-5 bg-body rounded"
+          className="p-6 shadow-lg p-3 mt-20 mb-5 bg-body rounded"
           style={{ backgroundColor: "white" }}
         >
           <form class="form-group">

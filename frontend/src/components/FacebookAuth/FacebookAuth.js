@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import "../FacebookAuth/FacebookAuth.css";
+import { SlSocialFacebook } from "react-icons/sl";
 
 function FacebookAuth({ informParent }) {
   const responseFacebook = async (response) => {
@@ -31,7 +32,13 @@ function FacebookAuth({ informParent }) {
             className="social-icon-facebook"
             onClick={renderProps.onClick}
           >
-            <i className="fab fa-facebook-f" />
+            <SlSocialFacebook
+              style={{
+                fontSize: "26px",
+                fontWeight: "900",
+                marginLeft: "12px",
+              }}
+            />
           </button>
         )}
       />

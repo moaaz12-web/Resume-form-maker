@@ -14,7 +14,7 @@ function Header({ user, Logout }) {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand href="#">Mern Stack Zhioua-Mohamed</Navbar.Brand>
+        <Navbar.Brand href="#">WordWeaver</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

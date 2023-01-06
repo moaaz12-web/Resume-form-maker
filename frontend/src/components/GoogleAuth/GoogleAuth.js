@@ -3,6 +3,7 @@ import { GoogleLogin } from "react-google-login";
 import axios from "axios";
 import { gapi } from "gapi-script";
 import "../GoogleAuth/GoogleAuth.css";
+import { GrGooglePlus } from "react-icons/gr";
 
 const GoogleAuth = ({ informParent }) => {
   useEffect(() => {
@@ -44,7 +45,13 @@ const GoogleAuth = ({ informParent }) => {
             onClick={renderProps.onClick}
             disabled={renderProps.disabled}
           >
-            <i class="fab fa-google" />
+            <GrGooglePlus
+              style={{
+                fontSize: "26px",
+                fontWeight: "900",
+                marginLeft: "13px",
+              }}
+            />
           </button>
         )}
       />
