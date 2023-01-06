@@ -46,7 +46,7 @@ module.exports = {
             const updatedDocument = await Document.findById(req.params.id);
             updatedDocument.isFavourite = true;
             await updatedDocument.save();
-            res.status(200).json({ message: "document updated successfully" });
+            res.status(200).json({ message: "document favourited successfully" });
         } catch (error) {
             res.json(error);
         }
