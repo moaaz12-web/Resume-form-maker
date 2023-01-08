@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import {useDispatch } from 'react-redux';
+import { generateD } from '.././redux/actions/generateD';
 
 
 const Sidebar = () => {
@@ -144,8 +145,9 @@ const Sidebar = () => {
       })
         .then(res => {
           if (res.data.generated) {
-            // dispatch a plain object action using the dispatch function
-            dispatch({ type: "GENERATE_SUCCESS", payload: res.data.generated });
+            
+            dispatch(generateD(res.data.generated));
+
           } else {
             console.error("The response does not contain the expected data");
           }
@@ -153,7 +155,9 @@ const Sidebar = () => {
         .catch(err => {
           console.error(err);
           // dispatch an error action using the dispatch function
-          dispatch({ type: "ERROR", payload: err });
+          // dispatch({ type: "ERROR", payload: err });
+          dispatch(generateD(err));
+
         });
 
     }else if(formType=="form2"){
@@ -167,15 +171,19 @@ const Sidebar = () => {
         .then(res => {
           if (res.data.generated) {
             // dispatch a plain object action using the dispatch function
-            dispatch({ type: "GENERATE_SUCCESS", payload: res.data.generated });
+            // dispatch({ type: "GENERATE_SUCCESS", payload: res.data.generated });
+            dispatch(generateD(res.data.generated));
+
           } else {
             console.error("The response does not contain the expected data");
           }
         })
         .catch(err => {
-          console.error(err);
+          // console.error(err);
           // dispatch an error action using the dispatch function
-          dispatch({ type: "ERROR", payload: err });
+          // dispatch({ type: "ERROR", payload: err });
+          dispatch(generateD(err));
+
         });
     }
   };
