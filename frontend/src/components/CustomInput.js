@@ -8,7 +8,7 @@ function CustomInput({
   name,
   onChange,
   errors,
-  password,
+  // password,
 }) {
   // const [passwordVisible, setPasswordVisible] = useState(password);
 

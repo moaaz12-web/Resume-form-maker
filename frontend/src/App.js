@@ -13,6 +13,7 @@ import ForceRedirect from "./components/ForceRedirect";
 // import Footer from "./components/Footer/Footer";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./components/Navbar.jsx";
+import Landing from "./components/Landing.jsx";
 
 function App() {
   const [isConnected, setIsconnected] = useState(false);
@@ -74,6 +75,7 @@ function App() {
         <Route path="/home" element={<ParentComp />} />
         <Route path="/newDoc" element={<NotFound />} />
         <Route path="/favorites" element={<NotFound />} />
+        <Route path="/info" element={<Landing />} />
 
         {/* ================== */}
       </Routes>
