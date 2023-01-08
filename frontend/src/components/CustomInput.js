@@ -13,7 +13,7 @@ function CustomInput({
   // const [passwordVisible, setPasswordVisible] = useState(password);
 
   return (
-    <div className="mb-3">
+    <div className="mb-4">
       <label className="form-label">{label}</label>
       <div className="input-group">
         <span className="input-group-text">

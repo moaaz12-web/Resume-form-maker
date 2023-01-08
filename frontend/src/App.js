@@ -12,7 +12,7 @@ import NotFound from "./pages/NotFound/NotFound";
 import { useEffect, useState } from "react";
 import ForceRedirect from "./components/ForceRedirect";
 import Footer from "./components/Footer/Footer";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./components/Navbar.jsx";
 
 function App() {
@@ -72,7 +72,9 @@ function App() {
         {/* Maaz Routes */}
 
         <Route path="/payments" element={<Payments />} />
-        <Route path="/" element={<ParentComp />} />
+        <Route path="/home" element={<ParentComp />} />
+        <Route path="/newDoc" element={<NotFound />} />
+        <Route path="/favorites" element={<NotFound />} />
 
         {/* ================== */}
       </Routes>

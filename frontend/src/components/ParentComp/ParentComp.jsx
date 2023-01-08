@@ -6,7 +6,7 @@ import MainContent from "../MainContent.jsx";
 const ParentComp = () => {
   return (
     <>
-        <Navbar/>
+        {/* <Navbar/> */}
         <div className='lg:flex'>
             <Sidebar/>
             <div className='flex justify-center w-full'>

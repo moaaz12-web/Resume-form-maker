@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRef } from "react";
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const MainContent = () => {
 // eslint-disable-next-line
@@ -9,6 +10,7 @@ const MainContent = () => {
   const textareaRef = useRef(null);
   const dispatch = useDispatch();
   const translated = useSelector((state) => state.translated);
+  const navigate = useNavigate()
 
 
   useEffect(() => {
@@ -97,10 +99,17 @@ const MainContent = () => {
   return (
     <div className="max-w-screen-lg mx-auto px-4 py-6 w-full">
       <div className="flex flex-row justify-end gap-4">
-        <button className="bg-gray-200 px-4 py-2 hover:bg-gray-300 rounded-full border border-gray-400 shadow-lg hover:shadow-xl sm:w-32 md:w-52">
+        <button 
+        className="bg-gray-200 px-4 py-2 hover:bg-gray-300 rounded-full border border-gray-400 shadow-lg hover:shadow-xl sm:w-32 md:w-52"
+        // onClick={navigate("/favorites")}
+        >
+          
           Favorites
         </button>
-        <button className="bg-gray-200 px-4 py-2 hover:bg-gray-300 rounded-full border border-gray-400 shadow-lg hover:shadow-xl sm:w-32 md:w-52">
+        <button className="bg-gray-200 px-4 py-2 hover:bg-gray-300 rounded-full border border-gray-400 shadow-lg hover:shadow-xl sm:w-32 md:w-52"
+        // onClick={navigate("/newDoc")}
+
+        >
           New Document
         </button>
       </div>
