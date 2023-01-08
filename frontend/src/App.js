@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import ForceRedirect from "./components/ForceRedirect";
 import Footer from "./components/Footer/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Navbar from "./components/Navbar.jsx";
 
 function App() {
   const [isConnected, setIsconnected] = useState(false);
@@ -40,7 +41,7 @@ function App() {
 
   return (
     <>
-      <Header Logout={Logout} user={isConnected} />
+      <Navbar Logout={Logout} user={isConnected} />
       <Routes>
         <Route
           path="/"
@@ -71,7 +72,7 @@ function App() {
         {/* Maaz Routes */}
 
         <Route path="/payments" element={<Payments />} />
-        <Route path="/" element={<ParentComp />} />
+        <Route path="/green" element={<ParentComp />} />
 
         {/* ================== */}
       </Routes>
