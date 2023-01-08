@@ -72,7 +72,7 @@ function App() {
         {/* Maaz Routes */}
 
         <Route path="/payments" element={<Payments />} />
-        <Route path="/green" element={<ParentComp />} />
+        <Route path="/" element={<ParentComp />} />
 
         {/* ================== */}
       </Routes>
