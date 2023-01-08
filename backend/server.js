@@ -5,14 +5,14 @@ const { Configuration, OpenAIApi } = require("openai");
 
 const app = express()
 const configuration = new Configuration({
-  apiKey: "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",
+  apiKey: "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",
 });
 
 app.use(cors());
 app.use(express.json())
 
 // Routes
-// app.use("/api", require("./routes/generation.js"))
+// app.use("/api", require("q./routes/generation.js"))
 
 app.post('/api/generate', (req, response) => {
   const { language, Tone, Usecase, Description, Variants } = req.body;

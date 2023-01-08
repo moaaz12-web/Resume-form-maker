@@ -126,7 +126,7 @@ const MainContent = () => {
         <div className="flex flex-col justify-center items-center lg:block">
           <p className="block font-bold text-gray-700 mb-2" htmlFor="dropdown1">Generated text</p>
           <textarea
-            className="border rounded-lg shadow-lg p-2  hover:border-blue-500 hover:shadow-xl w-full h-64 md:w-80 md:h-80 lg:w-96 lg:h-96"
+            className="border rounded-lg shadow-lg p-2  hover:border-blue-500 hover:shadow-xl cursor-pointer w-full h-64 md:w-80 md:h-80 lg:w-96 lg:h-96"
             placeholder="We are waiting foryou to generate some amazing content ✨✨✨" value={generated}   ref={textareaRef}
 
             
@@ -138,8 +138,8 @@ const MainContent = () => {
 
 
           <textarea
-            className="border rounded-lg shadow-lg p-2  hover:border-blue-500 hover:shadow-xl w-full h-64 md:w-80 md:h-80 lg:w-96 lg:h-96"
-            placeholder="Translated version.... from the dropdown below ✨✨✨" value={translated}  
+            className="border rounded-lg shadow-lg p-2  hover:border-blue-500 hover:shadow-xl cursor-pointer w-full h-64 md:w-80 md:h-80 lg:w-96 lg:h-96"
+            placeholder="Translated version.... from the dropdown below ✨✨✨" value={translated} 
           ></textarea>
           
 
