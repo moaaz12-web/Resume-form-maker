@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import Axios from "axios";
 import {useDispatch } from 'react-redux';
 import { generateD } from '.././redux/actions/generateD';
@@ -115,8 +115,6 @@ const Sidebar = () => {
   const [Description, setDescription] = useState("");
   // eslint-disable-next-line
   const [Variants, setVariants] = useState(1);
-  const [generated, setGenerated] = useState("We are waiting for you to generate some amazing content")
-  const [translated, setTranslated] = useState("")
   const dispatch = useDispatch()
   // dispatch(generated)
 
@@ -135,7 +133,7 @@ const Sidebar = () => {
   const handleSubmit = (event, formType) => {
     // prevent the default submission behavior of the form
     event.preventDefault();
-    if(formType =="form1"){
+    if(formType ==="form1"){
       Axios.post("http://localhost:5000/api/generate", {
         language: language,
         Tone: Tone,
@@ -160,7 +158,7 @@ const Sidebar = () => {
 
         });
 
-    }else if(formType=="form2"){
+    }else if(formType==="form2"){
       Axios.post("http://localhost:5000/api/generate", {
         language: language,
         Tone: Tone,

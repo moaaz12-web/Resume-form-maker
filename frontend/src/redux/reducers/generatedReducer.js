@@ -1,5 +1,3 @@
-// reducers/generated.js
-
 const generatedReducer = (state = {}, action) => {
   switch (action.type) {
     case 'GENERATE_REQUEST':

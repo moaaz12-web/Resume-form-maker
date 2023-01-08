@@ -5,13 +5,12 @@ import "./index.css";
 import Signin from "./pages/Signin/Signin";
 import Signup from "./pages/Signup/Signup";
 import Profile from "./pages/Profile/Profile";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "./components/Navbar";
+import {Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import NotFound from "./pages/NotFound/NotFound";
 import { useEffect, useState } from "react";
 import ForceRedirect from "./components/ForceRedirect";
-import Footer from "./components/Footer/Footer";
+// import Footer from "./components/Footer/Footer";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./components/Navbar.jsx";
 
