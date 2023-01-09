@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { translated } from '.././redux/actions/translated';
 import { Audio } from  'react-loader-spinner'
 import { generateD } from "../redux/actions/generateD";
-import { Audio } from 'react-loader-spinner'
+// import { Audio } from 'react-loader-spinner'
 
 
 
@@ -16,9 +16,11 @@ const MainContent = () => {
   const textareaRef = useRef(null);
   const dispatch = useDispatch();
   const translatedtXT = useSelector((state) => state.translated.val);
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const generated = useSelector(state => state.generated.val);
+  const user =  JSON.parse(localStorage.getItem('user'))._id
+  // const user ="32435353"
   
   const toggleDropdown = (e) => {
     setIsOpen((prevState) => !prevState);
@@ -61,12 +63,12 @@ const MainContent = () => {
   }
 
   const getDocs = () =>{
-    Axios.get(`http://localhost:5000/doc/document/${user}`)
+    Axios.get(`http://localhost:5000/doc/documents/${user}`)
       .then(res=>{
-        console.log(res)
+        console.log("res")
       })
       .catch((err)=>{
-        console.log(err)
+        console.log("err")
       })
   }
 

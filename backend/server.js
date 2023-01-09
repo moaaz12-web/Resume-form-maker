@@ -12,7 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const configuration = new Configuration({
-    apiKey: "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",
+    apiKey: "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",
 });
 
 // express app config

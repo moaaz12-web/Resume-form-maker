@@ -24,8 +24,8 @@ saveDocument: async(req,res)=>{
         // }
         //! User logged in hoga already agar wo ye page access kare!!!
     
-        TextDocumentSchema.create({ text, translated, user });
-        await TextDocumentSchema.save();
+        await TextDocumentSchema.create({ text, translated, user });
+        // await TextDocumentSchema.save();
         res.status(201).json({ message: "Document saved successfully" });
       } catch (error) {
         // console.error(error.message);
@@ -33,21 +33,31 @@ saveDocument: async(req,res)=>{
       }
 },
 
-getAllUserDocument: async(req, res) => {
-    try {
-        const findAll = await Document.find({ user: req.params.id });
-        if (!findAll) {
-            res.json({ message: "You dont have any document" });
-        } else {
-            // res.json(findAll);
-            res.status(200).json({
-                findAll,
-            });
-        }
-    } catch (error) {
-        res.json(error);
-    }
+getAllUserDocuments : async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const documents = await TextDocumentSchema.find({ user: userId });
+    res.status(200).json({ documents });
+  } catch (error) {
+    res.status(500).json({ message: "An  occurred while trying to retrieve the documents.", error });
+  }
 },
+
+
+
+// getAllUserDocument: async (req, res) => {
+  // try {
+  //   const documents = await Document.find({ user: req.params.id });
+  //   if (!documents) {
+  //     res.status(404).json({ message: "You don't have any documents." });
+  //   } else {
+  //     res.status(200).json({ documents });
+  //   }
+  // } catch (error) {
+  //   res.status(500).json({ message: "An error occurred while trying to retrieve your documents." });
+  // }
+//   console.log("backend is not working")
+// },
 
 
 
@@ -80,7 +90,6 @@ getAllUserDocument: async(req, res) => {
     //         console.log(error.message);
     //     }
     // },
-
 
     // favouriteDocument: async(req, res) => {
     //     try {
