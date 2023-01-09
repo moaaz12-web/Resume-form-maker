@@ -29,16 +29,16 @@ function FacebookAuth({ informParent }) {
         callback={(res) => responseFacebook(res)}
         render={(renderProps) => (
           <button
-            className="social-icon-facebook"
+            className="bg-blue-700 hover:bg-blue-800 rounded-full w-60 font-semibold text-white flex py-2 px-4"
             onClick={renderProps.onClick}
           >
             <SlSocialFacebook
               style={{
                 fontSize: "26px",
                 fontWeight: "900",
-                marginLeft: "12px",
+                marginRight: "8px",
               }}
-            />
+            /> Sign in with Facebook
           </button>
         )}
       />

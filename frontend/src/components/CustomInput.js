@@ -14,17 +14,14 @@ function CustomInput({
 
   return (
     <div className="mb-4">
-      <label className="form-label">{label}</label>
+      <label className="form-label"><span className="ml-2 font-bold flex justify-start items-center">{icon}&nbsp; {label}</span></label>
       <div className="input-group">
-        <span className="input-group-text">
-          <i className={icon}></i>
-        </span>
         <input
           type={type}
-           placeholder={placeholder}
+          placeholder={placeholder}
           name={name}
           onChange={onChange}
-          className={classnames("form-control", { "is-invalid": errors })}
+          className='py-1 px-2 w-4/5 outline-none border-b-2 focus:border-slate-500'
         />
         {/* {password && (
           <span className="input-group-text">
