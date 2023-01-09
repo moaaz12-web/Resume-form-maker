@@ -5,6 +5,7 @@ import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { translated } from '.././redux/actions/translated';
 import { Audio } from  'react-loader-spinner'
+import { generateD } from "../redux/actions/generateD";
 
 
 
@@ -17,6 +18,8 @@ const MainContent = () => {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const generated = useSelector(state => state.generated.val);
+  const user = JSON.parse(localStorage.getItem('user'))._id
+
   
   const toggleDropdown = (e) => {
     setIsOpen((prevState) => !prevState);
@@ -35,10 +38,41 @@ const MainContent = () => {
         }
       })
       .catch(err => {
-        dispatch(translated(err))
+        // dispatch(translated(err))
+        console.log(err.response.data.message)
       });
+      // .catch((err)=>{
+      //   dispatch(generateD(err.response.data.message))
+      //   dispatch(translated(err.response.data.message))
+      // })
     setLoading(false)
   };
+
+  const saveDoc = () =>{
+      // Send POST request to backend to save text document
+      Axios.post("http://localhost:5000/doc/save", { text: generated, translated: translatedtXT, user: user })
+        .then(res => {
+          // Dispatch action to update state
+          // dispatch(saveTextDocument(res.data));
+          console.log(res.data.message)
+        })
+        // .catch(err => console.log(err.response.data.message));
+        .catch((err)=>{
+          // dispatch(generateD(err.response.data.message))
+          // dispatch(translated(err.response.data.message))
+          console.log(err)
+        })
+  }
+
+  const getDocs = () =>{
+    Axios.get(`http://localhost:5000/doc/document/${user}`)
+      .then(res=>{
+        console.log(res)
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
+  }
 
   const lang = [
     "English",
@@ -57,13 +91,13 @@ const MainContent = () => {
       <div className="flex flex-row justify-end gap-4">
         <button
           className="bg-gray-200 px-4 py-2 hover:bg-gray-300 rounded-full border border-gray-400 shadow-lg hover:shadow-xl sm:w-32 md:w-52"
-          onClick={() => navigate("/favorites")}
+          onClick={saveDoc}
         >
 
           Save Document
         </button>
         <button className="bg-gray-200 px-4 py-2 hover:bg-gray-300 rounded-full border border-gray-400 shadow-lg hover:shadow-xl sm:w-32 md:w-52"
-          onClick={() => navigate("/newDoc")}
+          onClick={getDocs}
 
         >
           View Documents
