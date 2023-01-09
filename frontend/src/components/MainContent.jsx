@@ -89,13 +89,16 @@ const MainContent = () => {
       <div className="flex flex-row justify-end gap-4">
         <button
           className="bg-gray-200 px-4 py-2 hover:bg-gray-300 rounded-full border border-gray-400 shadow-lg hover:shadow-xl sm:w-32 md:w-52"
-          onClick={saveDoc}
+          // onClick={saveDoc}
+          //! workin but no point in it when getDocs isn't working'
         >
 
           Save Document
         </button>
         <button className="bg-gray-200 px-4 py-2 hover:bg-gray-300 rounded-full border border-gray-400 shadow-lg hover:shadow-xl sm:w-32 md:w-52"
-          onClick={getDocs}
+          // onClick={getDocs}
+            //! Not workin'
+
 
         >
           View Documents
