@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { translated } from '.././redux/actions/translated';
 import { Audio } from  'react-loader-spinner'
 import { generateD } from "../redux/actions/generateD";
+import { Audio } from 'react-loader-spinner'
 
 
 
@@ -18,14 +19,13 @@ const MainContent = () => {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const generated = useSelector(state => state.generated.val);
-  const user = JSON.parse(localStorage.getItem('user'))._id
-
   
   const toggleDropdown = (e) => {
     setIsOpen((prevState) => !prevState);
   };
 
   const handleLanguageChange = (event) => {
+    console.log("Starting")
     setLoading(true)
     const selectedLanguage = event.target.value;
     Axios.post("http://localhost:5000/api/translate", { language: selectedLanguage, text: generated })
@@ -41,10 +41,6 @@ const MainContent = () => {
         // dispatch(translated(err))
         console.log(err.response.data.message)
       });
-      // .catch((err)=>{
-      //   dispatch(generateD(err.response.data.message))
-      //   dispatch(translated(err.response.data.message))
-      // })
     setLoading(false)
   };
 
@@ -102,7 +98,7 @@ const MainContent = () => {
         >
           View Documents
         </button>
-        
+
       </div>
       <select
         placeholder="Select language for translation"
@@ -126,18 +122,18 @@ const MainContent = () => {
           {loading ? (
             // <div className={`w-full h-4 rounded-full bg-grey-light ${loading ? 'is-loading' : 'hidden'}`}>hehe</div>
             <div className=" h-64 w-full">
-            <Audio
-              className="absolute inset-0 m-auto"
-              type="Audio"
-              color="#00BFFF"
-              height={80}
-              width={80}
-            />
-          </div>
+              <Audio
+                className="absolute inset-0 m-auto"
+                type="Audio"
+                color="#00BFFF"
+                height={80}
+                width={80}
+              />
+            </div>
           ) : (
             <textarea
               className="border rounded-lg shadow-lg p-2  hover:border-blue-500 hover:shadow-xl cursor-pointer w-full h-64 md:w-80 md:h-80 lg:w-96 lg:h-96"
-              placeholder="We are waiting foryou to generate some amazing content ✨✨✨" value={generated} ref={textareaRef}
+              placeholder="We are waiting for you to generate some amazing content ✨✨✨" value={generated} ref={textareaRef}
             ></textarea>
           )}
         </div>
@@ -146,14 +142,14 @@ const MainContent = () => {
           {loading ? (
             // <div className={`w-full h-4 rounded-full bg-grey-light ${loading ? 'is-loading' : 'hidden'}`}>hehe</div>
             <div className=" h-64 w-full">
-            <Audio
-              className="absolute inset-0 m-auto"
-              type="Audio"
-              color="#00BFFF"
-              height={80}
-              width={80}
-            />
-          </div>
+              <Audio
+                className="absolute inset-0 m-auto"
+                type="Audio"
+                color="#00BFFF"
+                height={80}
+                width={80}
+              />
+            </div>
 
           ) : (
             <textarea
