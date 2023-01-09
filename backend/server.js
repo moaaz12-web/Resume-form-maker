@@ -12,7 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+    apiKey: "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",
 });
 
 // express app config
@@ -89,7 +89,7 @@ app.post("/api/translate", (req, response) => {
         });
 });
 
-app.post("/payment", cors(), async(req, res) => {
+app.post("/payment", cors(), async (req, res) => {
     let { amount, id } = req.body;
     try {
         const payment = await stripe.paymentIntents.create({
@@ -113,7 +113,7 @@ app.post("/payment", cors(), async(req, res) => {
     }
 });
 
-app.listen(PORT, function() {
+app.listen(PORT, function () {
     console.log(`Server Runs Perfectly at http://localhost:${PORT}`);
 });
 
