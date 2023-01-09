@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa'
 import CustomInput from "../../components/CustomInput";
 import "../Signup/Signup.css";
 import axios from "axios";
@@ -42,7 +43,7 @@ function Signup() {
 
       <div className="col-lg-4 col-md-6 mt-20 col-sm-8 mx-auto">
         <div
-          className="p-6 shadow-lg p-3 mb-5 bg-body rounded"
+          className="p-6 shadow-lg mb-5 bg-body rounded-xl border-2 border-slate-500"
           style={{ backgroundColor: "white" }}
         >
           <form class="form-group" onSubmit={onSubmitHandler}>
@@ -51,7 +52,7 @@ function Signup() {
               placeholder="name"
               type="text"
               name="name"
-              icon="fa fa-user"
+              icon={<FaUser />}
               onChange={onChangeHandler}
               errors={errors.name}
             />
@@ -60,7 +61,7 @@ function Signup() {
               placeholder="name@exemple.com"
               type="text"
               name="email"
-              icon="fa fa-envelope"
+              icon={<FaEnvelope />}
               onChange={onChangeHandler}
               errors={errors.email}
             />
@@ -69,16 +70,16 @@ function Signup() {
               placeholder="password"
               type="password"
               name="password"
-              icon="fa-solid fa-lock"
+              icon={<FaLock />}
               onChange={onChangeHandler}
               errors={errors.password}
             />
             <button className="submit" type="submit" disabled={isLoading}>
-              register
+              Register
             </button>
             <hr />
             <h6>
-              Already have an account? <Link to="/signin">Sign in here</Link>
+              Already have an account? {FaEnvelope} <Link to="/signin"><span className="font-bold underline">Sign in</span></Link> here
             </h6>
           </form>
         </div>

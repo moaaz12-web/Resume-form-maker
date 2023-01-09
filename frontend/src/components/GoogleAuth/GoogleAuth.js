@@ -41,7 +41,7 @@ const GoogleAuth = ({ informParent }) => {
         cookiePolicy={"single_host_origin"}
         render={(renderProps) => (
           <button
-            className="social-icon-google"
+            className="bg-red-500 hover:bg-red-600 rounded-full w-60 font-semibold text-white flex py-2 px-4"
             onClick={renderProps.onClick}
             disabled={renderProps.disabled}
           >
@@ -49,9 +49,10 @@ const GoogleAuth = ({ informParent }) => {
               style={{
                 fontSize: "26px",
                 fontWeight: "900",
-                marginLeft: "13px",
+                marginRight: '8px',
+                marginLeft: '8px'
               }}
-            />
+            /> Sign in with Google
           </button>
         )}
       />
