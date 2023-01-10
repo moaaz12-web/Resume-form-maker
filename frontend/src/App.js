@@ -1,6 +1,7 @@
 import React from "react";
 import Payments from "./components/Payments.jsx";
 import ParentComp from "./components/ParentComp/ParentComp.jsx";
+import FavoritesPage from "./components/ParentComp/FavoritesPage.jsx";
 import "./index.css";
 import Signin from "./pages/Signin/Signin";
 import Signup from "./pages/Signup/Signup";
@@ -17,6 +18,8 @@ import Landing from "./components/Landing.jsx";
 
 function App() {
   const [isConnected, setIsconnected] = useState(false);
+  // const user =  JSON.parse(localStorage.getItem('user'))._id
+
 
   const checkUserToken = () => {
     if (typeof window !== "undefined") {
@@ -76,6 +79,7 @@ function App() {
         <Route path="/newDoc" element={<NotFound />} />
         <Route path="/favorites" element={<NotFound />} />
         <Route path="/info" element={<Landing />} />
+        <Route path="/:user/alldocuments" element={<FavoritesPage />} />
 
         {/* ================== */}
       </Routes>

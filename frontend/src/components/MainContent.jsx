@@ -4,24 +4,28 @@ import { useRef } from "react";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { translated } from '.././redux/actions/translated';
-import { Audio } from  'react-loader-spinner'
+import { Audio, Vortex } from 'react-loader-spinner'
 import { generateD } from "../redux/actions/generateD";
+import { docs } from "../redux/actions/docs";
 // import { Audio } from 'react-loader-spinner'
 
 
 
 const MainContent = () => {
   // eslint-disable-next-line
+  const navigate = useNavigate()
+
   const [isOpen, setIsOpen] = useState(false);
   const textareaRef = useRef(null);
+  const [saving, setSaving] = useState(false)
   const dispatch = useDispatch();
   const translatedtXT = useSelector((state) => state.translated.val);
   // const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const generated = useSelector(state => state.generated.val);
-  const user =  JSON.parse(localStorage.getItem('user'))._id
+  const user = JSON.parse(localStorage.getItem('user'))._id
   // const user ="32435353"
-  
+
   const toggleDropdown = (e) => {
     setIsOpen((prevState) => !prevState);
   };
@@ -34,6 +38,7 @@ const MainContent = () => {
       .then(res => {
         if (res.data.translated) {
           dispatch(translated(res.data.translated));
+          setLoading(false)
 
         } else {
           console.error("The response does not contain the expected data");
@@ -43,32 +48,35 @@ const MainContent = () => {
         // dispatch(translated(err))
         console.log(err.response.data.message)
       });
-    setLoading(false)
   };
 
-  const saveDoc = () =>{
-      // Send POST request to backend to save text document
-      Axios.post("http://localhost:5000/doc/save", { text: generated, translated: translatedtXT, user: user })
-        .then(res => {
-          // Dispatch action to update state
-          // dispatch(saveTextDocument(res.data));
-          console.log(res.data.message)
-        })
-        // .catch(err => console.log(err.response.data.message));
-        .catch((err)=>{
-          // dispatch(generateD(err.response.data.message))
-          // dispatch(translated(err.response.data.message))
-          console.log(err)
-        })
+  const saveDoc = () => {
+    setSaving(true)
+    // Send POST request to backend to save text document
+    Axios.post("http://localhost:5000/doc/save", { text: generated, translated: translatedtXT, user: user })
+      .then(res => {
+        // Dispatch action to update state
+        // dispatch(saveTextDocument(res.data));
+        console.log(res.data.message)
+        setSaving(false)
+      })
+      // .catch(err => console.log(err.response.data.message));
+      .catch((err) => {
+        // dispatch(generateD(err.response.data.message))
+        // dispatch(translated(err.response.data.message))
+        console.log(err)
+      })
   }
 
-  const getDocs = () =>{
+  const getDocs = () => {
     Axios.get(`http://localhost:5000/doc/documents/${user}`)
-      .then(res=>{
-        console.log("res")
+      .then(res => {
+        // console.log(res)
+        dispatch(docs(res))
+        navigate(`../${user}/alldocuments`)
       })
-      .catch((err)=>{
-        console.log("err")
+      .catch((err) => {
+        console.log(err)
       })
   }
 
@@ -87,17 +95,32 @@ const MainContent = () => {
   return (
     <div className="max-w-screen-lg mx-auto px-4 py-6 w-full">
       <div className="flex flex-row justify-end gap-4">
+        <div className="flex justify-center items-center mr-20">
+          {saving && (
+            <>
+              <Vortex
+                visible={true}
+                height="50"
+                width="50"
+                ariaLabel="vortex-loading"
+                wrapperStyle={{}}
+                wrapperClass="vortex-wrapper"
+                colors={['red', 'green', 'blue', 'yellow', 'orange', 'purple']}
+              />
+              <div className="font-bold text-xl">Saving Document...</div>
+            </>
+          )}
+        </div>
         <button
           className="bg-gray-200 px-4 py-2 hover:bg-gray-300 rounded-full border border-gray-400 shadow-lg hover:shadow-xl sm:w-32 md:w-52"
-          // onClick={saveDoc}
-          //! workin but no point in it when getDocs isn't working'
+          onClick={saveDoc}
+        //! workin but no point in it when getDocs isn't working'
         >
-
           Save Document
         </button>
         <button className="bg-gray-200 px-4 py-2 hover:bg-gray-300 rounded-full border border-gray-400 shadow-lg hover:shadow-xl sm:w-32 md:w-52"
-          // onClick={getDocs}
-            //! Not workin'
+          onClick={getDocs}
+        //! Not workin'
 
 
         >
@@ -127,9 +150,9 @@ const MainContent = () => {
           {loading ? (
             // <div className={`w-full h-4 rounded-full bg-grey-light ${loading ? 'is-loading' : 'hidden'}`}>hehe</div>
             <div className=" h-64 w-full">
-              <Audio
+              <Vortex
                 className="absolute inset-0 m-auto"
-                type="Audio"
+                type="Vortex"
                 color="#00BFFF"
                 height={80}
                 width={80}
@@ -147,9 +170,9 @@ const MainContent = () => {
           {loading ? (
             // <div className={`w-full h-4 rounded-full bg-grey-light ${loading ? 'is-loading' : 'hidden'}`}>hehe</div>
             <div className=" h-64 w-full">
-              <Audio
+              <Vortex
                 className="absolute inset-0 m-auto"
-                type="Audio"
+                type="Vortex"
                 color="#00BFFF"
                 height={80}
                 width={80}
