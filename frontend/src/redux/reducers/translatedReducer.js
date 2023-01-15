@@ -17,6 +17,13 @@ const translatedReducer = (state = {}, action) => {
           loading: false,
           error: action.payload,
         };
+        case 'resetData':
+          return {
+            ...state,
+            loading: false,
+            val: [],
+            error: null
+          };
       default:
         return state;
     }

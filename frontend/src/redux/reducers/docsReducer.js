@@ -17,6 +17,13 @@ const docsReducer = (state = {}, action) => {
           loading: false,
           error: action.payload,
         };
+        // case 'RESET_DATA':
+        //   return {
+        //     ...state,
+        //     loading: false,
+        //     val: [],
+        //     error: null
+        //   };
       default:
         return state;
     }

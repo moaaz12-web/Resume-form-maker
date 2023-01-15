@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const navigation = [
   { name: "Vega.AI", href: "/", current: true },
-  { name: "Home", href: "/", current: false },
+  // { name: "Home", href: "/", current: false },
 ];
 
 function classNames(...classes) {

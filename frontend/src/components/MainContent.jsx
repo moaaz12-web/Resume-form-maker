@@ -4,8 +4,8 @@ import { useRef } from "react";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { translated } from '.././redux/actions/translated';
-import { Audio, Vortex } from 'react-loader-spinner'
-import { generateD } from "../redux/actions/generateD";
+import { Vortex } from 'react-loader-spinner'
+// import { generateD } from "../redux/actions/generateD";
 import { docs } from "../redux/actions/docs";
 // import { Audio } from 'react-loader-spinner'
 
@@ -14,7 +14,7 @@ import { docs } from "../redux/actions/docs";
 const MainContent = () => {
   // eslint-disable-next-line
   const navigate = useNavigate()
-
+  // eslint-disable-next-line
   const [isOpen, setIsOpen] = useState(false);
   const textareaRef = useRef(null);
   const [saving, setSaving] = useState(false)
@@ -130,7 +130,7 @@ const MainContent = () => {
       </div>
       <select
         placeholder="Select language for translation"
-        className="form-input border border-gray-500 bg-gray-300 py-2 px-3 block w-2/3 mt-4 mr-auto ml-auto rounded-full border leading-5 cursor-pointer transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+        className="form-input border-gray-500 bg-gray-300 py-2 px-3 block w-2/3 mt-4 mr-auto ml-auto rounded-full border leading-5 cursor-pointer transition duration-150 ease-in-out sm:text-sm sm:leading-5"
         id="dropdown1"
         onChange={handleLanguageChange}
       >
@@ -160,7 +160,7 @@ const MainContent = () => {
             </div>
           ) : (
             <textarea
-              className="border rounded-lg shadow-lg p-2  hover:border-blue-500 hover:shadow-xl cursor-pointer w-full h-64 md:w-80 md:h-80 lg:w-96 lg:h-96"
+              className="border bg-gray-300 rounded-lg shadow-lg p-2  hover:border-blue-500 hover:shadow-xl cursor-pointer w-full h-64 md:w-80 md:h-80 lg:w-96 lg:h-96"
               placeholder="We are waiting for you to generate some amazing content ✨✨✨" value={generated} ref={textareaRef}
             ></textarea>
           )}
@@ -181,7 +181,7 @@ const MainContent = () => {
 
           ) : (
             <textarea
-              className="border rounded-lg shadow-lg p-2  hover:border-blue-500 hover:shadow-xl cursor-pointer w-full h-64 md:w-80 md:h-80 lg:w-96 lg:h-96"
+              className="border rounded-lg shadow-lg p-2 bg-gray-300 hover:border-blue-500 hover:shadow-xl cursor-pointer w-full h-64 md:w-80 md:h-80 lg:w-96 lg:h-96"
               placeholder="Translated version.... from the dropdown below ✨✨✨" value={translatedtXT}
             ></textarea>
           )}

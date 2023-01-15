@@ -207,7 +207,6 @@ const Sidebar = () => {
 
 
         {/* <div className="bg-white rounded-lg shadow-lg p-4">
-
         </div> */}
         {selectedOption === "Generate New Copy" ? (
           <form onSubmit={event => handleSubmit(event, "form1")}>

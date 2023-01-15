@@ -9,7 +9,7 @@ const ParentComp = () => {
         {/* <Navbar/> */}
         <div className='lg:flex'>
             <Sidebar/>
-            <div className='flex justify-center w-full'>
+            <div className='flex justify-center w-full bg-white'>
 
             <MainContent/>
             </div>

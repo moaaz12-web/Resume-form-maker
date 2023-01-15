@@ -4,6 +4,7 @@ import { Navigate } from "react-router-dom";
 const ForceRedirect = ({ user, children }) => {
   if (user) {
     return <Navigate to="/home" replace />;
+    // return <Navigate to="/" replace />;
   }
   return children;
 };
