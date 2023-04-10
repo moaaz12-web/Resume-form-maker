@@ -1,8 +1,8 @@
-import { RESET_DATA } from './actions';
+// import { RESET_DATA } from './actions';
 
 const resetReducer = (state = {}, action) => {
     switch (action.type) {
-        case RESET_DATA:
+        case "RESET_DATA":
             return {};
         default:
             return state;
