@@ -25,37 +25,6 @@ app.use(
 );
 
 
-// app.post("/api/", (req, response) => {
-//     const {experience, summ, projects } = req.body;
-    
-//     console.log(summ)
-//     console.log(experience)
-
-//     const configuration = new Configuration({
-//         apiKey: "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",
-//     });
-
-//     const openai = new OpenAIApi(configuration);
-
-//     const output = openai
-//         .createCompletion({
-//             model: "text-davinci-003",
-//             prompt: "say hi to me",
-//             temperature: 0.7,
-//             max_tokens: 256,
-//             top_p: 1,
-//             frequency_penalty: 0,
-//             presence_penalty: 0,
-//         })
-//         .then((res) => {
-//             response.send({ generated: res.data.choices[0].text });
-//         })
-//         .catch((err) => {
-//             console.error(err);
-//             response.status(500).send({ error: "Internal Server Error" });
-//         });
-// });
-
 
 app.post("/api/projects", async (req, res) => {
     const { projects } = req.body;
@@ -112,7 +81,7 @@ app.post("/api/projects", async (req, res) => {
     const { experience } = req.body;
   
     const configuration = new Configuration({
-      apiKey: "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",
+      apiKey: process.env.CHATGPT_API_KEY,
     });
   
     const openai = new OpenAIApi(configuration);
@@ -161,7 +130,7 @@ app.post("/api/projects", async (req, res) => {
     const { summ } = req.body;
   
     const configuration = new Configuration({
-      apiKey: "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",
+      apiKey: process.env.CHATGPT_API_KEY,
     });
   
     const openai = new OpenAIApi(configuration);
